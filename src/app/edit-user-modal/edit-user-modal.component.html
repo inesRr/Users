@@ -1,0 +1,36 @@
+<div class="dialog-wrapper">
+    <h3 mat-dialog-title>Edit User</h3>
+
+    <mat-dialog-content fxLayout="row">
+        <form [formGroup]="userForm" novalidate>
+            <div fxLayout="row wrap" fxLayoutGap="12px">
+                <mat-form-field fxFlex="198px">
+                    <input formControlName="name" matInput placeholder="Name" required />
+                    <mat-error *ngIf="userForm.invalid">
+                        Invalid characters entered
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="357px">
+                    <input formControlName="email" matInput placeholder="Email">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="198px">
+                    <input formControlName="address" matInput placeholder="Address">
+                    <mat-error *ngIf="userForm.invalid">
+                        Invalid characters entered
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+        </form>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions fxLayout="row nowrap" fxLayoutAlign="center" fxLayoutGap="14px">
+        <button color="primary" id="cancel btn" fxFlex="102px" mat-stroked-button mat-dialog-close>
+            Cancel
+        </button>
+        <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary" [mat-dialog-close]="true">Save</button>
+    </mat-dialog-actions>
+</div>

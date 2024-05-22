@@ -1,0 +1,25 @@
+.dialog-wrapper {
+    mat-dialog-actions,
+    mat-form-field {
+        width: 100%;
+    }
+
+    mat-dialog-actions {
+        padding: 0 24px 9px;
+    }
+
+    button {
+        width: 20%;
+        padding: 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #fff;
+        background-color: #389e73;
+
+        &:first-child {
+            background-color: #383b3e;
+        }
+    }
+}

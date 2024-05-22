@@ -28,8 +28,7 @@ export class EditUserModalComponent {
       id: [this.userFormValue ? this.userFormValue.id : null],
       name: [this.userFormValue ? this.userFormValue.name : null, [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       email: [{ value: this.userFormValue ? this.userFormValue.email : null, disabled: true }],
-      address: [this.userFormValue ? this.userFormValue.address : null, Validators.pattern(/^[a-zA-Z0-9"'\s,\-.]+$/g
-)],
+      address: [this.userFormValue ? this.userFormValue.address : null, Validators.pattern('^[a-zA-Z0-9 ,."\'-]+$')],
     });
   }
 }

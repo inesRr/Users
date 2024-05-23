@@ -18,7 +18,7 @@ import { User } from '../user-model';
 })
 export class UsersListComponent {
   public displayedColumns: string[] = ['name', 'email', 'address'];
-  public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  public dataSource: MatTableDataSource<User> = new MatTableDataSource<User>([]);
   public componentDestroyed$ = new Subject<void>();
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -34,37 +34,22 @@ export class UsersListComponent {
 
   ngOnInit(): void {
     this.userService.getUsers().pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((data: any) => {
-         return this.dataSource.data = data})
+      .subscribe(data => this.dataSource.data = data)
   }
   
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
-  public displayAddress(address: any) {
-    delete address.geo
-    return typeof address === 'object' ? Object.values(address).filter((value) => value !== null && value !== "").join() : address;
-  }
-
-  public openEditUserDialog(user: any): void {
+  public openEditUserDialog(user: User): void {
     const dialogRef = this.openUserDialog();
-    const arrayIncludesObject = typeof user.address === 'object';
-    let finalObj;
 
-    if (arrayIncludesObject) {
-      finalObj = {
-        ...user,
-        address: Object.values(user.address).filter((value) => value !== null && value !== "").join()
-      };
-    } else {
-      finalObj = user;
-    }
-    dialogRef.componentInstance.userFormValue = finalObj;
+    dialogRef.componentInstance.userFormValue = user;
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const index = this.dataSource.data.findIndex((obj: { id: any; }) => obj.id === dialogRef.componentInstance.userForm.value.id);
+        //find the index of the changed user in the list and assign to it the new edited value
+        const index = this.dataSource.data.findIndex((obj: { id: number; }) => obj.id === dialogRef.componentInstance.userForm.value.id);
         if (index !== -1) {
           const updatedObject = { ...this.dataSource.data[index], ...dialogRef.componentInstance.userForm.value };
           this.dataSource.data[index] = updatedObject;
@@ -74,8 +59,7 @@ export class UsersListComponent {
     });
   }
 
-
-  private openUserDialog(): MatDialogRef<EditUserModalComponent> {
+  private openUserDialog(): MatDialogRef<EditUserModalComponent, string> {
     return this.dialog.open(EditUserModalComponent, {
       autoFocus: false,
       maxWidth: '627px',

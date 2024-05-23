@@ -1,6 +1,7 @@
 {
   "name": "users",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "Ines Rashikj",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

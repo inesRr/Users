@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { User } from '../user-model';
 
 @Component({
   selector: 'app-edit-user-modal',
@@ -14,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class EditUserModalComponent {
   public userForm: FormGroup;
-  public userFormValue: any;
+  public userFormValue: User;
 
   constructor(public dialogRef: MatDialogRef<EditUserModalComponent>,
     private formBuilder: FormBuilder
@@ -27,8 +28,10 @@ export class EditUserModalComponent {
     this.userForm = this.formBuilder.group({
       id: [this.userFormValue ? this.userFormValue.id : null],
       name: [this.userFormValue ? this.userFormValue.name : null, [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      // name is required field and only accept English characters.
       email: [{ value: this.userFormValue ? this.userFormValue.email : null, disabled: true }],
       address: [this.userFormValue ? this.userFormValue.address : null, Validators.pattern('^[a-zA-Z0-9 ,."\'-]+$')],
+      // regex for address that allow English characters, numbers, and the special characters: - " ' , .
     });
   }
 }

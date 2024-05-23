@@ -19,7 +19,7 @@
         <ng-container matColumnDef="address">
             <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <span class="mobile-label-address">Address:</span> {{displayAddress(element.address)}} </mat-cell>
+                <span class="mobile-label-address">Address:</span> {{element.address}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

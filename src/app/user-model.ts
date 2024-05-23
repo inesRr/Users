@@ -1,4 +1,4 @@
-export interface User {
+export interface UserApi {
     id: number;
     name: string;
     username: string;
@@ -20,4 +20,12 @@ export interface User {
         catchPhrase: string;
         bs: string;
     };
+}
+
+export interface User {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    address: string;
 }

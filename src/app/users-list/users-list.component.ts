@@ -33,8 +33,9 @@ export class UsersListComponent {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers().pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(data => this.dataSource.data = data)
+      this.userService.getUsers().pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(data => this.dataSource.data = data);
+    // takeUntil ensures competition of the observable, so managing the subscription is not required
   }
   
   ngAfterViewInit() {

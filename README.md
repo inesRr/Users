@@ -11,8 +11,10 @@ Objective: Create a responsive web page using Angular that fetches and displays 
 - Display the data in a user-friendly and responsive layout. 
 - Implement sorting functionality for at least one field of the data. 
 - Ensure the page is responsive and mobile-friendly. 
-- Allow editing of user details through a modal. ● Unit tests are optional. 
-- Open API Resource ● Use the JSONPlaceholder API. This is a free fake online REST API for testing and prototyping.
+- Allow editing of user details through a modal. 
+- Unit tests are optional. 
+- Open API Resource 
+- Use the JSONPlaceholder API. This is a free fake online REST API for testing and prototyping.
 
 Instructions: 
 - Setup and Fetch Data: 
